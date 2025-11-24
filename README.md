@@ -1,0 +1,2 @@
+# LightWeightAIModels
+For8gb
