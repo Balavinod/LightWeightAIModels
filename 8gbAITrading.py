@@ -32,13 +32,13 @@ TELEGRAM_CHANNEL_ID="-1003128773566"
 
 # Schwab API Configuration
 class Config:
-    TELEGRAM_BOT_TOKEN = "8431923854:AAEb_apNWFMQMJiJA7_sH9SGKAOPLpwYfBU"
-    TELEGRAM_CHANNEL_ID = "-1003128773566"
+    TELEGRAM_BOT_TOKEN = "*********"
+    TELEGRAM_CHANNEL_ID = "**********"
 
     # Schwab API credentials
-    SCHWAB_APP_KEY = "hXAPtmd5JdQp6WJ4GypXOeoNlWldbGyUuzh60f0dXaHCbp9G"
-    SCHWAB_APP_SECRET = "3RpDbud7VrpiyAPwO240AvHcvXUokQxdHUr4Hhs5RwAAftIdhGn0was8Nro537lF"
-    SCHWAB_CALLBACK_URL = "https://127.0.0.1:8182"
+    SCHWAB_APP_KEY = "*************"
+    SCHWAB_APP_SECRET = "**************"
+    SCHWAB_CALLBACK_URL = "********************"
 
     SYMBOL = "/NQ"  # NASDAQ Futures symbol for Schwab
     TIMEFRAME = "1min"  # Schwab timeframe
