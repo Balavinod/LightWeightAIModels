@@ -24,10 +24,10 @@ warnings.filterwarnings('ignore')
 # ============================================
 
 # Your Telegram Bot Token from @BotFather
-TELEGRAM_BOT_TOKEN="8431923854:AAEb_apNWFMQMJiJA7_sH9SGKAOPLpwYfBU"
+TELEGRAM_BOT_TOKEN="**********"
 
 # Your Telegram Channel ID (include the @ symbol)
-TELEGRAM_CHANNEL_ID="-1003128773566"
+TELEGRAM_CHANNEL_ID="**********"
 
 
 # Schwab API Configuration
