@@ -204,3 +204,9 @@
 2025-11-25 00:22:06 | INFO     | YahooRSI | {"timestamp": "2025-11-25T00:22:06.363311", "type": "PERFORMANCE", "operation": "DATA_FETCH", "duration_seconds": 1.7118268013000488, "success": true}
 2025-11-25 00:22:06 | INFO     | YahooRSI | ✅ Fetched 40000 data points for /NQ in 1.71s
 2025-11-25 00:22:06 | INFO     | YahooRSI | backup of data is completed
+2025-11-25 12:35:08 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-25 12:35:09 | INFO     | YahooRSI | Client object created successfully
+2025-11-25 12:35:11 | INFO     | YahooRSI | {"timestamp": "2025-11-25T12:35:11.100156", "type": "DATA_DUMP", "symbol": "/NQ", "data": {"period": 59107.0, "interval": "1m", "data_points_count": 40000, "fetch_duration": 1.7730414867401123, "latest_price": 25075.0}}
+2025-11-25 12:35:11 | INFO     | YahooRSI | {"timestamp": "2025-11-25T12:35:11.101154", "type": "PERFORMANCE", "operation": "DATA_FETCH", "duration_seconds": 1.7730414867401123, "success": true}
+2025-11-25 12:35:11 | INFO     | YahooRSI | ✅ Fetched 40000 data points for /NQ in 1.77s
+2025-11-25 12:35:11 | INFO     | YahooRSI | backup of data is completed
