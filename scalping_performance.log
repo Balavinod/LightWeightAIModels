@@ -1,0 +1,57 @@
+2025-11-23 22:25:44,037 - INFO - 🚀 Starting 1-Minute Scalping System
+2025-11-23 22:25:44,037 - INFO - 💻 Optimized for 8GB RAM + Intel i5
+2025-11-23 22:25:44,037 - INFO - 🎯 Symbol: /NQ
+2025-11-23 22:25:44,037 - INFO - ⏰ Interval: 60 seconds
+2025-11-23 22:25:44,037 - INFO - 📈 Loading historical data...
+2025-11-23 22:25:45,137 - INFO - HTTP Request: GET https://api.schwabapi.com/marketdata/v1/pricehistory?symbol=%2FNQ&periodType=day&period=1&frequencyType=minute&frequency=1&startDate=31564800000&endDate=1764599144037&needExtendedHoursData=true "HTTP/1.1 200 OK"
+2025-11-23 22:25:45,219 - ERROR - ❌ Historical data error: argument of type 'Response' is not iterable
+2025-11-23 22:25:45,219 - INFO - 🔄 Cycle 1 - Fetching data...
+2025-11-23 22:25:45,388 - INFO - HTTP Request: GET https://api.schwabapi.com/marketdata/v1/quotes?symbols=%2FNQ "HTTP/1.1 200 OK"
+2025-11-23 22:25:45,390 - ERROR - ❌ Quote fetch error: argument of type 'Response' is not iterable
+2025-11-23 22:25:45,390 - INFO - ⏰ Cycle completed in 0.17s, sleeping 59.83s
+2025-11-23 22:26:45,221 - INFO - 🔄 Cycle 2 - Fetching data...
+2025-11-23 22:26:45,523 - INFO - HTTP Request: GET https://api.schwabapi.com/marketdata/v1/quotes?symbols=%2FNQ "HTTP/1.1 200 OK"
+2025-11-23 22:26:45,523 - ERROR - ❌ Quote fetch error: argument of type 'Response' is not iterable
+2025-11-23 22:26:45,523 - INFO - ⏰ Cycle completed in 0.30s, sleeping 59.70s
+2025-11-23 22:27:45,222 - INFO - 🔄 Cycle 3 - Fetching data...
+2025-11-23 22:27:45,452 - INFO - HTTP Request: GET https://api.schwabapi.com/marketdata/v1/quotes?symbols=%2FNQ "HTTP/1.1 200 OK"
+2025-11-23 22:27:45,453 - ERROR - ❌ Quote fetch error: argument of type 'Response' is not iterable
+2025-11-23 22:27:45,453 - INFO - ⏰ Cycle completed in 0.23s, sleeping 59.77s
+2025-11-23 22:27:48,553 - INFO - 🛑 Stopping system...
+2025-11-23 22:41:53,323 - INFO - 🚀 Starting 1-Minute Scalping System
+2025-11-23 22:41:53,324 - INFO - 💻 Optimized for 8GB RAM + Intel i5
+2025-11-23 22:41:53,324 - INFO - 🎯 Symbol: /NQ
+2025-11-23 22:41:53,324 - INFO - ⏰ Interval: 60 seconds
+2025-11-23 22:41:53,325 - INFO - 📈 Loading historical data...
+2025-11-23 22:41:54,665 - INFO - HTTP Request: GET https://api.schwabapi.com/marketdata/v1/pricehistory?symbol=%2FNQ&periodType=day&period=1&frequencyType=minute&frequency=1&startDate=31564800000&endDate=1764600113325&needExtendedHoursData=true "HTTP/1.1 200 OK"
+2025-11-23 22:41:54,761 - ERROR - ❌ Historical data error: argument of type 'Response' is not iterable
+2025-11-23 22:41:54,761 - INFO - 🔄 Cycle 1 - Fetching data...
+2025-11-23 22:41:54,762 - INFO - ⏰ Cycle completed in 0.00s, sleeping 60.00s
+2025-11-23 22:42:54,763 - INFO - 🔄 Cycle 2 - Fetching data...
+2025-11-23 22:42:54,774 - INFO - ⏰ Cycle completed in 0.01s, sleeping 59.99s
+2025-11-23 22:43:54,764 - INFO - 🔄 Cycle 3 - Fetching data...
+2025-11-23 22:43:54,765 - INFO - ⏰ Cycle completed in 0.00s, sleeping 60.00s
+2025-11-23 22:44:54,764 - INFO - 🔄 Cycle 4 - Fetching data...
+2025-11-23 22:44:54,764 - INFO - ⏰ Cycle completed in 0.00s, sleeping 60.00s
+2025-11-23 22:45:54,766 - INFO - 🔄 Cycle 5 - Fetching data...
+2025-11-23 22:45:54,780 - INFO - ⏰ Cycle completed in 0.01s, sleeping 59.99s
+2025-11-23 22:46:54,786 - INFO - 🔄 Cycle 6 - Fetching data...
+2025-11-23 22:46:54,787 - INFO - ⏰ Cycle completed in 0.00s, sleeping 60.00s
+2025-11-23 22:47:54,787 - INFO - 🔄 Cycle 7 - Fetching data...
+2025-11-23 22:47:54,788 - INFO - ⏰ Cycle completed in 0.00s, sleeping 60.00s
+2025-11-23 22:48:33,765 - INFO - 🛑 Stopping system...
+2025-11-23 22:48:44,894 - INFO - 🚀 Starting 1-Minute Scalping System
+2025-11-23 22:48:44,895 - INFO - 💻 Optimized for 8GB RAM + Intel i5
+2025-11-23 22:48:44,895 - INFO - 🎯 Symbol: /NQ
+2025-11-23 22:48:44,895 - INFO - ⏰ Interval: 60 seconds
+2025-11-23 22:48:44,895 - INFO - 📈 Loading historical data...
+2025-11-23 22:50:27,896 - INFO - 🚀 Starting 1-Minute Scalping System
+2025-11-23 22:50:27,896 - INFO - 💻 Optimized for 8GB RAM + Intel i5
+2025-11-23 22:50:27,897 - INFO - 🎯 Symbol: /NQ
+2025-11-23 22:50:27,897 - INFO - ⏰ Interval: 60 seconds
+2025-11-23 22:50:27,897 - INFO - 📈 Loading historical data...
+2025-11-23 23:17:56,084 - INFO - 🚀 Starting 1-Minute Scalping System
+2025-11-23 23:17:56,085 - INFO - 💻 Optimized for 8GB RAM + Intel i5
+2025-11-23 23:17:56,086 - INFO - 🎯 Symbol: /NQ
+2025-11-23 23:17:56,086 - INFO - ⏰ Interval: 60 seconds
+2025-11-23 23:17:56,086 - INFO - 📈 Loading historical data...

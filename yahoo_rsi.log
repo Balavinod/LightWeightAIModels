@@ -1,0 +1,206 @@
+2025-11-24 18:19:31 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 18:19:31 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 18:21:07 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 18:21:08 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 18:22:03 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 18:22:03 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 18:22:36 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 18:22:37 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 18:22:57 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 18:22:57 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 18:23:42 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 18:23:42 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 18:25:46 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 18:25:47 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 18:27:55 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 18:27:56 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 18:27:56 | ERROR    | YahooRSI | Authentication error: SchwabDataFetcher.fetch_data() missing 3 required positional arguments: 'SYMBOL', 'PERIOD', and 'INTERVAL'
+2025-11-24 18:28:21 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 18:28:21 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 18:30:06 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 18:30:07 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 20:34:43 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 20:34:44 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 21:30:29 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 21:30:29 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 21:31:00 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 21:31:01 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 21:34:36 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 21:34:37 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 21:39:33 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 21:39:34 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 21:39:35 | ERROR    | YahooRSI | FATAL ERROR during log_data_dump preparation: 'Close'
+2025-11-24 21:41:17 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 21:41:17 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 21:41:19 | INFO     | YahooRSI | {"timestamp": "2025-11-24T21:41:19.274294", "type": "DATA_DUMP", "symbol": "/NQ", "data": {"period": 0, "interval": "1m", "data_points_count": 40000, "fetch_duration": 1.3313310146331787, "latest_price": 24933.75}}
+2025-11-24 21:51:07 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 21:51:08 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 21:52:36 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 21:52:36 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 21:54:36 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 21:54:36 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 21:54:38 | ERROR    | YahooRSI | FATAL ERROR during datetime conversion: 'datetime'
+2025-11-24 21:57:47 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 21:57:47 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 21:57:49 | ERROR    | YahooRSI | FATAL ERROR during datetime conversion: 'datetime'
+2025-11-24 22:02:05 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 22:02:05 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 22:02:07 | INFO     | YahooRSI | {"timestamp": "2025-11-24T22:02:07.227274", "type": "DATA_DUMP", "symbol": "/NQ", "data": {"period": 0, "interval": "1m", "data_points_count": 40000, "fetch_duration": 1.38749098777771, "latest_price": 24927.0}}
+2025-11-24 22:03:11 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 22:03:12 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 22:03:13 | INFO     | YahooRSI | {"timestamp": "2025-11-24T22:03:13.810985", "type": "DATA_DUMP", "symbol": "/NQ", "data": {"period": 0, "interval": "1m", "data_points_count": 40000, "fetch_duration": 1.608950138092041, "latest_price": 24929.25}}
+2025-11-24 22:04:25 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 22:04:26 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 22:04:28 | INFO     | YahooRSI | {"timestamp": "2025-11-24T22:04:28.029917", "type": "DATA_DUMP", "symbol": "/NQ", "data": {"period": 0, "interval": "1m", "data_points_count": 40000, "fetch_duration": 1.3391966819763184, "latest_price": 24929.25}}
+2025-11-24 22:05:03 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 22:05:04 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 22:05:05 | INFO     | YahooRSI | {"timestamp": "2025-11-24T22:05:05.583097", "type": "DATA_DUMP", "symbol": "/NQ", "data": {"period": 0, "interval": "1m", "data_points_count": 40000, "fetch_duration": 1.3178119659423828, "latest_price": 24927.0}}
+2025-11-24 22:05:30 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 22:05:31 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 22:05:32 | INFO     | YahooRSI | {"timestamp": "2025-11-24T22:05:32.691276", "type": "DATA_DUMP", "symbol": "/NQ", "data": {"period": 0, "interval": "1m", "data_points_count": 40000, "fetch_duration": 1.2381112575531006, "latest_price": 24927.5}}
+2025-11-24 22:06:15 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 22:06:16 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 22:06:17 | INFO     | YahooRSI | {"timestamp": "2025-11-24T22:06:17.899322", "type": "DATA_DUMP", "symbol": "/NQ", "data": {"period": 0, "interval": "1m", "data_points_count": 40000, "fetch_duration": 1.272688865661621, "latest_price": 24929.25}}
+2025-11-24 22:07:28 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 22:07:28 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 22:07:30 | INFO     | YahooRSI | {"timestamp": "2025-11-24T22:07:30.400361", "type": "DATA_DUMP", "symbol": "/NQ", "data": {"period": 0, "interval": "1m", "data_points_count": 40000, "fetch_duration": 1.2383003234863281, "latest_price": 24922.5}}
+2025-11-24 22:11:12 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 22:11:13 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 22:11:15 | INFO     | YahooRSI | {"timestamp": "2025-11-24T22:11:15.192444", "type": "DATA_DUMP", "symbol": "/NQ", "data": {"period": 59107.0, "interval": "1m", "data_points_count": 40000, "fetch_duration": 1.4771549701690674, "latest_price": 24937.75}}
+2025-11-24 22:15:16 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 22:15:17 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 22:15:18 | INFO     | YahooRSI | {"timestamp": "2025-11-24T22:15:18.764418", "type": "DATA_DUMP", "symbol": "/NQ", "data": {"period": 59107.0, "interval": "1m", "data_points_count": 40000, "fetch_duration": 1.4044499397277832, "latest_price": 24926.5}}
+2025-11-24 22:15:18 | INFO     | YahooRSI | {"timestamp": "2025-11-24T22:15:18.765418", "type": "PERFORMANCE", "operation": "DATA_FETCH", "duration_seconds": 1.4044499397277832, "success": true}
+2025-11-24 22:15:18 | INFO     | YahooRSI | ✅ Fetched 3 data points for /NQ in 1.40s
+2025-11-24 22:16:39 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 22:16:40 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 22:16:41 | INFO     | YahooRSI | {"timestamp": "2025-11-24T22:16:41.640252", "type": "DATA_DUMP", "symbol": "/NQ", "data": {"period": 59107.0, "interval": "1m", "data_points_count": 40000, "fetch_duration": 1.3107199668884277, "latest_price": 24921.5}}
+2025-11-24 22:16:41 | INFO     | YahooRSI | {"timestamp": "2025-11-24T22:16:41.641252", "type": "PERFORMANCE", "operation": "DATA_FETCH", "duration_seconds": 1.3107199668884277, "success": true}
+2025-11-24 22:16:41 | INFO     | YahooRSI | ✅ Fetched 40000 data points for /NQ in 1.31s
+2025-11-24 22:18:41 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 22:18:42 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 22:18:43 | INFO     | YahooRSI | {"timestamp": "2025-11-24T22:18:43.583422", "type": "DATA_DUMP", "symbol": "/NQ", "data": {"period": 59107.0, "interval": "1m", "data_points_count": 40000, "fetch_duration": 1.3781659603118896, "latest_price": 24920.0}}
+2025-11-24 22:18:43 | INFO     | YahooRSI | {"timestamp": "2025-11-24T22:18:43.584247", "type": "PERFORMANCE", "operation": "DATA_FETCH", "duration_seconds": 1.3781659603118896, "success": true}
+2025-11-24 22:18:43 | INFO     | YahooRSI | ✅ Fetched 40000 data points for /NQ in 1.38s
+2025-11-24 22:37:25 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 22:37:26 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 22:37:27 | INFO     | YahooRSI | {"timestamp": "2025-11-24T22:37:27.942567", "type": "DATA_DUMP", "symbol": "/NQ", "data": {"period": 59107.0, "interval": "1m", "data_points_count": 40000, "fetch_duration": 1.7408299446105957, "latest_price": 24926.0}}
+2025-11-24 22:37:27 | INFO     | YahooRSI | {"timestamp": "2025-11-24T22:37:27.943625", "type": "PERFORMANCE", "operation": "DATA_FETCH", "duration_seconds": 1.7408299446105957, "success": true}
+2025-11-24 22:37:27 | INFO     | YahooRSI | ✅ Fetched 40000 data points for /NQ in 1.74s
+2025-11-24 22:43:14 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 22:43:15 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 22:43:16 | INFO     | YahooRSI | {"timestamp": "2025-11-24T22:43:16.552062", "type": "DATA_DUMP", "symbol": "/NQ", "data": {"period": 59107.0, "interval": "1m", "data_points_count": 40000, "fetch_duration": 1.3310167789459229, "latest_price": 24907.75}}
+2025-11-24 22:43:16 | INFO     | YahooRSI | {"timestamp": "2025-11-24T22:43:16.553063", "type": "PERFORMANCE", "operation": "DATA_FETCH", "duration_seconds": 1.3310167789459229, "success": true}
+2025-11-24 22:43:16 | INFO     | YahooRSI | ✅ Fetched 40000 data points for /NQ in 1.33s
+2025-11-24 22:43:16 | ERROR    | YahooRSI | FATAL ERROR during backup of data: stat: path should be string, bytes, os.PathLike or integer, not DataFrame
+2025-11-24 22:44:35 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 22:44:36 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 22:44:38 | INFO     | YahooRSI | {"timestamp": "2025-11-24T22:44:38.600671", "type": "DATA_DUMP", "symbol": "/NQ", "data": {"period": 59107.0, "interval": "1m", "data_points_count": 40000, "fetch_duration": 1.4371047019958496, "latest_price": 24910.0}}
+2025-11-24 22:44:38 | INFO     | YahooRSI | {"timestamp": "2025-11-24T22:44:38.601624", "type": "PERFORMANCE", "operation": "DATA_FETCH", "duration_seconds": 1.4371047019958496, "success": true}
+2025-11-24 22:44:38 | INFO     | YahooRSI | ✅ Fetched 40000 data points for /NQ in 1.44s
+2025-11-24 22:44:38 | ERROR    | YahooRSI | FATAL ERROR during backup of data: stat: path should be string, bytes, os.PathLike or integer, not DataFrame
+2025-11-24 22:46:32 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 22:46:33 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 22:46:34 | INFO     | YahooRSI | {"timestamp": "2025-11-24T22:46:34.943902", "type": "DATA_DUMP", "symbol": "/NQ", "data": {"period": 59107.0, "interval": "1m", "data_points_count": 40000, "fetch_duration": 1.2270689010620117, "latest_price": 24903.25}}
+2025-11-24 22:46:34 | INFO     | YahooRSI | {"timestamp": "2025-11-24T22:46:34.944914", "type": "PERFORMANCE", "operation": "DATA_FETCH", "duration_seconds": 1.2270689010620117, "success": true}
+2025-11-24 22:46:34 | INFO     | YahooRSI | ✅ Fetched 40000 data points for /NQ in 1.23s
+2025-11-24 22:46:34 | ERROR    | YahooRSI | FATAL ERROR during backup of data: stat: path should be string, bytes, os.PathLike or integer, not DataFrame
+2025-11-24 22:47:18 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 22:47:19 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 22:47:20 | INFO     | YahooRSI | {"timestamp": "2025-11-24T22:47:20.493866", "type": "DATA_DUMP", "symbol": "/NQ", "data": {"period": 59107.0, "interval": "1m", "data_points_count": 40000, "fetch_duration": 1.2293243408203125, "latest_price": 24906.0}}
+2025-11-24 22:47:20 | INFO     | YahooRSI | {"timestamp": "2025-11-24T22:47:20.494910", "type": "PERFORMANCE", "operation": "DATA_FETCH", "duration_seconds": 1.2293243408203125, "success": true}
+2025-11-24 22:47:20 | INFO     | YahooRSI | ✅ Fetched 40000 data points for /NQ in 1.23s
+2025-11-24 22:47:20 | ERROR    | YahooRSI | FATAL ERROR during backup of data: AdvancedLogger.append_new_data_only() got multiple values for argument 'index_label'
+2025-11-24 22:49:42 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 22:49:43 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 22:49:45 | INFO     | YahooRSI | {"timestamp": "2025-11-24T22:49:45.060918", "type": "DATA_DUMP", "symbol": "/NQ", "data": {"period": 59107.0, "interval": "1m", "data_points_count": 40000, "fetch_duration": 1.327315092086792, "latest_price": 24900.0}}
+2025-11-24 22:49:45 | INFO     | YahooRSI | {"timestamp": "2025-11-24T22:49:45.062300", "type": "PERFORMANCE", "operation": "DATA_FETCH", "duration_seconds": 1.327315092086792, "success": true}
+2025-11-24 22:49:45 | INFO     | YahooRSI | ✅ Fetched 40000 data points for /NQ in 1.33s
+2025-11-24 22:49:45 | ERROR    | YahooRSI | FATAL ERROR during backup of data: AdvancedLogger.append_new_data_only() got multiple values for argument 'df_new_data'
+2025-11-24 22:50:04 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 22:50:05 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 22:50:06 | INFO     | YahooRSI | {"timestamp": "2025-11-24T22:50:06.663242", "type": "DATA_DUMP", "symbol": "/NQ", "data": {"period": 59107.0, "interval": "1m", "data_points_count": 40000, "fetch_duration": 1.3029191493988037, "latest_price": 24897.0}}
+2025-11-24 22:50:06 | INFO     | YahooRSI | {"timestamp": "2025-11-24T22:50:06.663242", "type": "PERFORMANCE", "operation": "DATA_FETCH", "duration_seconds": 1.3029191493988037, "success": true}
+2025-11-24 22:50:06 | INFO     | YahooRSI | ✅ Fetched 40000 data points for /NQ in 1.30s
+2025-11-24 22:50:06 | ERROR    | YahooRSI | FATAL ERROR during backup of data: AdvancedLogger.append_new_data_only() got multiple values for argument 'df_new_data'
+2025-11-24 22:52:24 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 22:52:24 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 22:52:26 | INFO     | YahooRSI | {"timestamp": "2025-11-24T22:52:26.159272", "type": "DATA_DUMP", "symbol": "/NQ", "data": {"period": 59107.0, "interval": "1m", "data_points_count": 40000, "fetch_duration": 1.2656052112579346, "latest_price": 24896.75}}
+2025-11-24 22:52:26 | INFO     | YahooRSI | {"timestamp": "2025-11-24T22:52:26.160272", "type": "PERFORMANCE", "operation": "DATA_FETCH", "duration_seconds": 1.2656052112579346, "success": true}
+2025-11-24 22:52:26 | INFO     | YahooRSI | ✅ Fetched 40000 data points for /NQ in 1.27s
+2025-11-24 22:52:26 | ERROR    | YahooRSI | FATAL ERROR during backup of data: stat: path should be string, bytes, os.PathLike or integer, not DataFrame
+2025-11-24 22:53:29 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 22:53:30 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 22:53:32 | ERROR    | YahooRSI | {"timestamp": "2025-11-24T22:53:32.486119", "type": "ERROR", "error_type": "DATA_FETCH_ERROR", "message": "No data returned for /NQ", "context": {"symbol": "/NQ", "period": 0, "interval": "1m"}}
+2025-11-24 22:54:16 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 22:54:17 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 22:54:18 | INFO     | YahooRSI | {"timestamp": "2025-11-24T22:54:18.706089", "type": "DATA_DUMP", "symbol": "/NQ", "data": {"period": 59107.0, "interval": "1m", "data_points_count": 40000, "fetch_duration": 1.297861099243164, "latest_price": 24899.5}}
+2025-11-24 22:54:18 | INFO     | YahooRSI | {"timestamp": "2025-11-24T22:54:18.707486", "type": "PERFORMANCE", "operation": "DATA_FETCH", "duration_seconds": 1.297861099243164, "success": true}
+2025-11-24 22:54:18 | INFO     | YahooRSI | ✅ Fetched 40000 data points for /NQ in 1.30s
+2025-11-24 22:54:18 | ERROR    | YahooRSI | FATAL ERROR during backup of data: stat: path should be string, bytes, os.PathLike or integer, not DataFrame
+2025-11-24 22:55:18 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 22:55:19 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 22:55:20 | INFO     | YahooRSI | {"timestamp": "2025-11-24T22:55:20.918106", "type": "DATA_DUMP", "symbol": "/NQ", "data": {"period": 59107.0, "interval": "1m", "data_points_count": 40000, "fetch_duration": 1.502791166305542, "latest_price": 24905.5}}
+2025-11-24 22:55:20 | INFO     | YahooRSI | {"timestamp": "2025-11-24T22:55:20.919464", "type": "PERFORMANCE", "operation": "DATA_FETCH", "duration_seconds": 1.502791166305542, "success": true}
+2025-11-24 22:55:20 | INFO     | YahooRSI | ✅ Fetched 40000 data points for /NQ in 1.50s
+2025-11-24 22:55:20 | ERROR    | YahooRSI | FATAL ERROR during backup of data: stat: path should be string, bytes, os.PathLike or integer, not DataFrame
+2025-11-24 22:56:12 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 22:56:13 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 22:56:14 | INFO     | YahooRSI | {"timestamp": "2025-11-24T22:56:14.898489", "type": "DATA_DUMP", "symbol": "/NQ", "data": {"period": 59107.0, "interval": "1m", "data_points_count": 40000, "fetch_duration": 1.3885488510131836, "latest_price": 24907.5}}
+2025-11-24 22:56:14 | INFO     | YahooRSI | {"timestamp": "2025-11-24T22:56:14.898489", "type": "PERFORMANCE", "operation": "DATA_FETCH", "duration_seconds": 1.3885488510131836, "success": true}
+2025-11-24 22:56:14 | INFO     | YahooRSI | ✅ Fetched 40000 data points for /NQ in 1.39s
+2025-11-24 22:56:14 | ERROR    | YahooRSI | FATAL ERROR during backup of data: stat: path should be string, bytes, os.PathLike or integer, not DataFrame
+2025-11-24 22:57:08 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 22:57:08 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 22:57:10 | INFO     | YahooRSI | {"timestamp": "2025-11-24T22:57:10.264157", "type": "DATA_DUMP", "symbol": "/NQ", "data": {"period": 59107.0, "interval": "1m", "data_points_count": 40000, "fetch_duration": 1.1910429000854492, "latest_price": 24903.75}}
+2025-11-24 22:57:10 | INFO     | YahooRSI | {"timestamp": "2025-11-24T22:57:10.266416", "type": "PERFORMANCE", "operation": "DATA_FETCH", "duration_seconds": 1.1910429000854492, "success": true}
+2025-11-24 22:57:10 | INFO     | YahooRSI | ✅ Fetched 40000 data points for /NQ in 1.19s
+2025-11-24 22:57:10 | ERROR    | YahooRSI | FATAL ERROR during backup of data: AdvancedLogger.append_new_data_only() got multiple values for argument 'index_label'
+2025-11-24 23:12:43 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 23:12:44 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 23:12:45 | INFO     | YahooRSI | {"timestamp": "2025-11-24T23:12:45.928019", "type": "DATA_DUMP", "symbol": "/NQ", "data": {"period": 59107.0, "interval": "1m", "data_points_count": 40000, "fetch_duration": 1.4780619144439697, "latest_price": 24882.0}}
+2025-11-24 23:12:45 | INFO     | YahooRSI | {"timestamp": "2025-11-24T23:12:45.929036", "type": "PERFORMANCE", "operation": "DATA_FETCH", "duration_seconds": 1.4780619144439697, "success": true}
+2025-11-24 23:12:45 | INFO     | YahooRSI | ✅ Fetched 40000 data points for /NQ in 1.48s
+2025-11-24 23:12:45 | ERROR    | YahooRSI | FATAL ERROR during backup of data: AdvancedLogger.append_new_data_only() takes from 2 to 3 positional arguments but 4 were given
+2025-11-24 23:14:05 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 23:14:06 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 23:14:07 | INFO     | YahooRSI | {"timestamp": "2025-11-24T23:14:07.934633", "type": "DATA_DUMP", "symbol": "/NQ", "data": {"period": 59107.0, "interval": "1m", "data_points_count": 40000, "fetch_duration": 1.2147839069366455, "latest_price": 24888.0}}
+2025-11-24 23:14:07 | INFO     | YahooRSI | {"timestamp": "2025-11-24T23:14:07.935544", "type": "PERFORMANCE", "operation": "DATA_FETCH", "duration_seconds": 1.2147839069366455, "success": true}
+2025-11-24 23:14:07 | INFO     | YahooRSI | ✅ Fetched 40000 data points for /NQ in 1.21s
+2025-11-24 23:14:07 | ERROR    | YahooRSI | FATAL ERROR during backup of data: stat: path should be string, bytes, os.PathLike or integer, not DataFrame
+2025-11-24 23:22:11 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 23:22:12 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 23:22:13 | INFO     | YahooRSI | {"timestamp": "2025-11-24T23:22:13.699650", "type": "DATA_DUMP", "symbol": "/NQ", "data": {"period": 59107.0, "interval": "1m", "data_points_count": 40000, "fetch_duration": 1.3539009094238281, "latest_price": 24893.0}}
+2025-11-24 23:22:13 | INFO     | YahooRSI | {"timestamp": "2025-11-24T23:22:13.700650", "type": "PERFORMANCE", "operation": "DATA_FETCH", "duration_seconds": 1.3539009094238281, "success": true}
+2025-11-24 23:22:13 | INFO     | YahooRSI | ✅ Fetched 40000 data points for /NQ in 1.35s
+2025-11-24 23:22:13 | ERROR    | YahooRSI | FATAL ERROR during backup of data: stat: path should be string, bytes, os.PathLike or integer, not DataFrame
+2025-11-24 23:29:29 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 23:29:29 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 23:29:31 | INFO     | YahooRSI | {"timestamp": "2025-11-24T23:29:31.591981", "type": "DATA_DUMP", "symbol": "/NQ", "data": {"period": 59107.0, "interval": "1m", "data_points_count": 40000, "fetch_duration": 1.6652777194976807, "latest_price": 24896.0}}
+2025-11-24 23:29:31 | INFO     | YahooRSI | {"timestamp": "2025-11-24T23:29:31.592912", "type": "PERFORMANCE", "operation": "DATA_FETCH", "duration_seconds": 1.6652777194976807, "success": true}
+2025-11-24 23:29:31 | INFO     | YahooRSI | ✅ Fetched 40000 data points for /NQ in 1.67s
+2025-11-24 23:29:32 | INFO     | YahooRSI | backup of data is completed
+2025-11-24 23:54:36 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-24 23:54:37 | INFO     | YahooRSI | Client object created successfully
+2025-11-24 23:54:39 | INFO     | YahooRSI | {"timestamp": "2025-11-24T23:54:39.429480", "type": "DATA_DUMP", "symbol": "/NQ", "data": {"period": 59107.0, "interval": "1m", "data_points_count": 40000, "fetch_duration": 1.7316131591796875, "latest_price": 24922.25}}
+2025-11-24 23:54:39 | INFO     | YahooRSI | {"timestamp": "2025-11-24T23:54:39.430498", "type": "PERFORMANCE", "operation": "DATA_FETCH", "duration_seconds": 1.7316131591796875, "success": true}
+2025-11-24 23:54:39 | INFO     | YahooRSI | ✅ Fetched 40000 data points for /NQ in 1.73s
+2025-11-24 23:54:39 | INFO     | YahooRSI | backup of data is completed
+2025-11-25 00:17:12 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-25 00:17:12 | INFO     | YahooRSI | Client object created successfully
+2025-11-25 00:17:12 | ERROR    | YahooRSI | Authentication error: 'list' object has no attribute 'empty'
+2025-11-25 00:18:47 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-25 00:18:47 | INFO     | YahooRSI | Client object created successfully
+2025-11-25 00:18:47 | ERROR    | YahooRSI | Authentication error: 'list' object has no attribute 'empty'
+2025-11-25 00:19:05 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-25 00:19:06 | INFO     | YahooRSI | Client object created successfully
+2025-11-25 00:19:06 | ERROR    | YahooRSI | Authentication error: name 'df' is not defined
+2025-11-25 00:19:40 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-25 00:19:41 | INFO     | YahooRSI | Client object created successfully
+2025-11-25 00:19:41 | ERROR    | YahooRSI | Authentication error: name 'df' is not defined
+2025-11-25 00:22:03 | INFO     | YahooRSI | Attempting authentication with Schwab API...
+2025-11-25 00:22:04 | INFO     | YahooRSI | Client object created successfully
+2025-11-25 00:22:06 | INFO     | YahooRSI | {"timestamp": "2025-11-25T00:22:06.362327", "type": "DATA_DUMP", "symbol": "/NQ", "data": {"period": 59107.0, "interval": "1m", "data_points_count": 40000, "fetch_duration": 1.7118268013000488, "latest_price": 24916.25}}
+2025-11-25 00:22:06 | INFO     | YahooRSI | {"timestamp": "2025-11-25T00:22:06.363311", "type": "PERFORMANCE", "operation": "DATA_FETCH", "duration_seconds": 1.7118268013000488, "success": true}
+2025-11-25 00:22:06 | INFO     | YahooRSI | ✅ Fetched 40000 data points for /NQ in 1.71s
+2025-11-25 00:22:06 | INFO     | YahooRSI | backup of data is completed
