@@ -25,3 +25,4 @@ yahoo_rsi_latest_fetch.csv
 .idea/
 .ipynb_checkpoints/
 *.ipynb
+tradingSignals.env
