@@ -1,0 +1,27 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+*.log
+*.json
+schwab_token.json
+8gbAITrading.py
+AIModels.py
+easy_client.py
+FuturePrice.py
+NewStreamingDemo.py
+tryit.py
+
+# Ignore backup CSV files and the backup folder entirely
+backup/
+schwab_candles_backup.csv
+yahoo_rsi_latest_fetch.csv
+
+# Ignore IDE specific files that cause conflicts
+.idea/
+.ipynb_checkpoints/
+*.ipynb
