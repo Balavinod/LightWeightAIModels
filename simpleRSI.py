@@ -27,10 +27,15 @@ import pprint
 import tensorflow as tf
 from sklearn.preprocessing import StandardScaler
 import joblib
+from xgboost import XGBClassifier
+from keras.models import load_model
+from sklearn.utils.validation import check_is_fitted
+
 
 # Telegram
 from telegram import Bot
 from telegram.error import TelegramError
+import traceback
 
 
 # Advanced Logging Configuration
@@ -313,6 +318,184 @@ class TechnicalIndicators:
         ta.volume.MFIIndicator(high=high, low=low, close=close, volume=volume).money_flow_index().iloc[-1]
 
 
+class HybridAIModels:
+    """Hybrid AI models optimized for Intel Ultra"""
+
+    def __init__(self):
+        self.models = {}
+        self.scaler = StandardScaler()
+        self.feature_columns = []
+        self._initialize_models()
+        #scaler_path = "C:\\Users\\Deppa\\PycharmProjects\\LightWeightAIModels"
+        try:
+            # --- Load All Components ---
+            self.scaler = joblib.load('scaler.pkl')
+            self.models['xgboost'] = joblib.load('xgboost_model.pkl')
+            self.models['random_forest'] = joblib.load('random_forest_model.pkl')
+            self.models['tslm'] = load_model('tslm_model.keras')  # Use .h5 or .keras extension
+            print("✅ All components loaded successfully for prediction.")
+            check_is_fitted(self.models['random_forest'])
+            print("✅ Random Forest model verified as fitted.")
+        except (FileNotFoundError, ValueError, IOError) as e:
+            logging.error(f"❌ FATAL ERROR: Required model files not found: {e}. Cannot predict.")
+            # Stop the application if models aren't present
+            exit()
+
+    def _initialize_models(self, scaler_path='scaler.pkl', models=None):
+
+            self.models['tslm'] = tf.keras.Sequential([
+                # Recommended approach: Define the input shape using Input() first
+                tf.keras.layers.Input(shape=(30, 15)),
+                tf.keras.layers.LSTM(64, return_sequences=True),  # input_shape removed
+                tf.keras.layers.Dropout(0.2),
+                tf.keras.layers.LSTM(32, return_sequences=False),
+                tf.keras.layers.Dropout(0.2),
+                tf.keras.layers.Dense(16, activation='relu'),
+                tf.keras.layers.Dense(1, activation='sigmoid')
+            ])
+            self.models['tslm'].compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+
+            # XGBoost (Optimized for CPU)
+            self.models['xgboost'] = xgb.XGBClassifier(
+                n_estimators=200,
+                max_depth=8,
+                learning_rate=0.1,
+                subsample=0.8,
+                colsample_bytree=0.8,
+                random_state=42,
+                n_jobs=8,  # Use all 8 cores
+                tree_method='hist' , # Optimized for CPU
+                objective='binary:logistic',
+                # --- AND THIS LINE ---
+                base_score=0.5
+            )
+
+
+            # Random Forest
+            self.models['random_forest'] = RandomForestClassifier(
+                n_estimators=150,
+                max_depth=12,
+                min_samples_split=5,
+                min_samples_leaf=2,
+                random_state=42,
+                n_jobs=8  # Use all 8 cores
+                )
+
+            print("🤖 Hybrid AI Models Initialized (TSLM + XGBoost + Random Forest)")
+
+
+
+    def prepare_features(self, indicators_dict, price_data):
+        """Prepare features for AI models"""
+        features = []
+
+        # Technical indicators as features
+        feature_keys = ['rsi_14', 'macd', 'macd_histogram', 'bb_position', 'vwap_distance',
+                        'stoch_k', 'williams_r', 'atr', 'volume_ratio', 'cmf', 'mfi',
+                        'sma_5', 'sma_20', 'ema_8', 'ema_21']
+
+        for key in feature_keys:
+            features.append(indicators_dict.get(key, 0))
+
+        # Price-based features
+        features.extend([
+            price_data['close'].pct_change().iloc[-1],
+            price_data['high'].iloc[-1] - price_data['low'].iloc[-1],  # Range
+            price_data['volume'].iloc[-1] / price_data['volume'].mean() if price_data['volume'].mean() > 0 else 1
+        ])
+
+        self.feature_columns = feature_keys + ['price_change', 'price_range', 'volume_ratio_current']
+        return np.array(features).reshape(1, -1)
+
+    def create_targets(self, df_historical: pd.DataFrame) -> np.ndarray:
+        """Generates binary targets (0 or 1) based on the next day's price movement."""
+        price_change = df_historical['close'].pct_change()
+        targets = (price_change.shift(-1) > 0).astype(int)
+        targets.dropna(inplace=True)
+        return targets.to_numpy()
+
+    def train_models(self, features, targets):
+        """Train all AI models"""
+        try:
+            # Scale features
+            scaled_features = self.scaler.fit_transform(features)
+
+            targets = targets.astype(int)
+            # Train models
+            self.models['xgboost'].fit(scaled_features, targets)
+            self.models['random_forest'].fit(scaled_features, targets)
+
+            # For TSLM, we need sequential data
+            if len(features) >= 30:
+                sequences = self._create_sequences(features, 30)
+                self.models['tslm'].fit(sequences, targets[:len(sequences)], epochs=10, batch_size=32, verbose=0)
+
+            logging.info("✅ All AI models trained successfully")
+            joblib.dump(self.scaler, 'scaler.pkl')
+            joblib.dump(self.models['xgboost'], 'xgboost_model.pkl')
+            joblib.dump(self.models['random_forest'], 'random_forest_model.pkl')
+            self.models['tslm'].save('tslm_model.keras')
+            logging.info("💾 All components saved to files (.pkl, .h5)")
+
+        except Exception as e:
+            import traceback
+            traceback.print_exc()
+            logging.error(f"❌ AI training error: {e}")
+            traceback.print_exc()
+
+    def predict(self, features):
+        """Get predictions from all models"""
+        print(f"features:{features}")
+        print(f"Shape of features: {features.shape}")
+        try:
+            scaled_features = self.scaler.transform(features)
+            print(f"scaled_features:{scaled_features}", flush=True)
+            print(f"scaled of features: {scaled_features.shape}", flush=True)
+            predictions = {}
+
+            # XGBoost prediction
+            xgb_pred = self.models['xgboost'].predict_proba(scaled_features)
+            #predictions['xgboost'] = np.take(xgb_pred, 1, axis=1).item()
+
+            if xgb_pred.shape[1] == 2:
+                predictions['xgboost'] = xgb_pred[0, 1]  # Probability of class 1 for the first sample
+            else:
+                predictions['xgboost'] = xgb_pred[0, 0]  # Only one output, take that value
+            rf_pred = self.models['random_forest'].predict_proba(scaled_features)
+            #predictions['random_forest'] = np.take(rf_pred, 1, axis=1).item()
+            if rf_pred.shape[1] == 2:
+                predictions['random_forest'] = rf_pred[0, 1]
+            else:
+                predictions['random_forest'] = rf_pred[0, 0]
+            check_is_fitted(self.models['random_forest'])
+            logging.info("✅ Random Forest model verified as fitted.")
+
+            # TSLM prediction (if we have sequence data)
+            if features.shape[0] >= 30:
+                sequence = features[-30:].reshape(1, 30, -1)
+                tslm_pred = self.models['tslm'].predict(sequence, verbose=0)
+                predictions['tslm'] = tslm_pred.item()
+            # Weighted ensemble
+            weights = {'xgboost': 0.4, 'random_forest': 0.35, 'tslm': 0.25}
+            ensemble_pred = sum(predictions[model] * weights.get(model, 0) for model in predictions)
+            # Confidence score
+            confidence = np.mean([abs(pred - 0.5) * 2 for pred in predictions.values()])
+            return ensemble_pred, confidence, predictions
+
+        except Exception as e:
+            logging.error(f"❌ AI prediction error: {e}")
+            print("--- DEBUGGING TRACEBACK START ---")
+            traceback.print_exc()
+            print("--- DEBUGGING TRACEBACK END ---")
+            print(" prediction is not working:{e}")
+            return 0.5, 0.0, {}
+
+    def _create_sequences(self, data, sequence_length):
+        """Create sequences for TSLM"""
+        sequences = []
+        for i in range(len(data) - sequence_length):
+            sequences.append(data[i:i + sequence_length])
+        return np.array(sequences)
 class TelegramNotifier:
     """Telegram notification system"""
 
@@ -487,10 +670,93 @@ def load_historical_data_from_csv(df_EmptyDataFrame,file_path, index_label='date
     else:
         print(f"Error: The file {file_path} does not exist.")
         return df_EmptyDataFrame # Return an empty DataFrame
+
+
+def _generate_signal(ai_prediction, confidence, current_price):
+    """Generate trading signal"""
+    print(f"ai_prediction:{ai_prediction}, confidence:{confidence}, current_price:{current_price}")
+    signal = {
+        'timestamp': datetime.now(),
+        'prediction': ai_prediction,
+        'confidence': confidence,
+        'price': current_price,
+        'signal': 'HOLD',
+        'strength': 'NEUTRAL'
+    }
+
+    if confidence < 0.6:
+        return signal
+
+    if ai_prediction > 0.75:
+        signal.update({
+            'signal': 'BUY',
+            'strength': 'STRONG',
+            'take_profit': current_price * 1.004,  # 0.4% target
+            'stop_loss': current_price * 0.998  # 0.2% stop loss
+        })
+    elif ai_prediction > 0.65:
+        signal.update({
+            'signal': 'BUY',
+            'strength': 'MODERATE',
+            'take_profit': current_price * 1.003,
+            'stop_loss': current_price * 0.998
+        })
+    elif ai_prediction < 0.25:
+        signal.update({
+            'signal': 'SELL',
+            'strength': 'STRONG',
+            'take_profit': current_price * 0.996,
+            'stop_loss': current_price * 1.002
+        })
+    elif ai_prediction < 0.35:
+        signal.update({
+            'signal': 'SELL',
+            'strength': 'MODERATE',
+            'take_profit': current_price * 0.997,
+            'stop_loss': current_price * 1.002
+        })
+
+    return signal
+
+def _display_results(data, indicators, signal, ai_prediction, confidence):
+        """Display comprehensive results"""
+        current_price = data['close'].iloc[-1]
+
+        print(f"\n{'=' * 80}")
+        print(f"{'=' * 80}")
+        print(f"💰 Price: ${current_price:.2f} | 🤖 AI: {ai_prediction:.1%} | 💪 Conf: {confidence:.1%}")
+        print(f"⏰ Time: {datetime.now().strftime('%H:%M:%S')}")
+        print(f"{'-' * 80}")
+
+        # Technical Indicators
+        print("📊 TECHNICAL INDICATORS:")
+        print(f"   RSI 14: {indicators.get('rsi_14', 0):.1f} | MACD: {indicators.get('macd', 0):.3f}")
+        print(f"   BB Pos: {indicators.get('bb_position', 0):.1%} | VWAP: {indicators.get('vwap_distance', 0):.2f}%")
+        print(f"   Volume: {indicators.get('volume_ratio', 0):.1f}x | ATR: {indicators.get('atr', 0):.2f}")
+
+        # Trading Signal
+        emoji = "🟢" if signal['signal'] == 'BUY' else "🔴" if signal['signal'] == 'SELL' else "⚪"
+        print(f"\n⚡ SIGNAL: {emoji} {signal['signal']} ({signal['strength']}) {emoji}")
+
+        if signal['signal'] != 'HOLD':
+            print(f"🎯 Target: ${signal.get('take_profit', 0):.2f}")
+            print(f"🛑 Stop: ${signal.get('stop_loss', 0):.2f}")
+
+        print(f"{'=' * 80}\n")
+
+
+
+
 def main():
     import os
     import pandas as pd
-    load_dotenv("C:\\Users\\Administrator\\tradingSignals.env")
+    import joblib
+
+    load_dotenv("C:\\Users\\Deppa\\tradingSignals.env")
+    telegram = TelegramNotifier(
+        bot_token=os.getenv('TELEGRAM_BOT_TOKEN'),
+        channel_id=os.getenv('TELEGRAM_CHANNEL_ID'))
+    ai_models = HybridAIModels()
     config=SimpleRSIConfig()
     logger=AdvancedLogger()
     TI=TechnicalIndicators()
@@ -561,26 +827,43 @@ def main():
                     TechnicalIndicatorsValue = TI.calculate_all_indicators(df_final)
                     for key, value in TechnicalIndicatorsValue.items():
                         logger.logger.info(f"{key}: {value}")
+                    if TechnicalIndicatorsValue:
+                        features = ai_models.prepare_features(TechnicalIndicatorsValue, df_final)
+                        Targets = ai_models.create_targets(df_final)
+                        print(f"Targets shape: {Targets.shape}")
+                        print(f"Unique target values: {np.unique(Targets)}")
+                        print(f"Average target value (mean): {np.mean(Targets)}")
+                        #Targets = Targets.astype(int)
+                        #min_length = min(len(features), len(Targets))
+                        #X_train = features[-min_length:]
+                        #y_train = Targets[-min_length:]
+                        #ai_models.train_models(X_train, y_train)
+                        ai_prediction, confidence, model_details = ai_models.predict(features)
+                        print(f"ai_prediction: {ai_prediction}")
+                        print(f"confidence: {confidence}")
+                        print(f"model_details: {model_details}")
+                        current_price = df_final['close'].iloc[-1]
+                        signal = _generate_signal(ai_prediction, confidence, current_price)
+                        if signal['signal'] != 'HOLD' and confidence > 0.7:
+                            self.telegram.send_scalping_signal(signal, indicators, {
+                                'confidence': confidence,
+                                'xgboost': model_details.get('xgboost', 0),
+                                'random_forest': model_details.get('random_forest', 0),
+                                'tslm': model_details.get('tslm', 0)
+                        })
+
+                        # 6. Display results
+                    _display_results(df_final, TechnicalIndicatorsValue, signal, ai_prediction, confidence)
+                    print(f"🚀 ULTIMATE SCALPING - Cycle {cycle_count}")
                     cycle_duration = time.time() - cycle_start
                     sleep_time = max(1, 60 - cycle_duration)
                     logger.logger.info(f"⏰ Cycle completed in {cycle_duration:.2f}s")
                     time.sleep(sleep_time)
-                    if cycle_count == 10:
+                    if cycle_count == 3:
+
                         sys.exit (0)
         except Exception as e:
-            logger.logger.error(f"FATAL ERROR during backup of data: {e}")
-
-        '''data_list = system.fetch_data()
-        #backup_file_path = "C:\\Users\\Administrator\\PycharmProjects\\PythonProject\\backup\\schwab_candles_backup.csv"
-        try:
-            append_new_data_only(
-                data_list,  # Assign by keyword for clarity
-                backup_file_path
-            )
-            logger.logger.info("backup of data is completed")
-        except Exception as e:
-            logger.logger.error(f"FATAL ERROR during backup of data: {e}")
-        #print (data_list)'''
+            logger.logger.error(f" signal generation error: {e}")
     except Exception as e:
         logger.logger.error(f"Authentication error: {e}")
         import traceback
