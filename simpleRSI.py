@@ -3,6 +3,7 @@ import yfinance as yf
 import pandas as pd
 import numpy as np
 import time
+import threading
 from datetime import datetime, timedelta
 import ta
 import logging
@@ -30,6 +31,7 @@ import joblib
 from xgboost import XGBClassifier
 from keras.models import load_model
 from sklearn.utils.validation import check_is_fitted
+from asyncio import sleep
 
 
 # Telegram
@@ -504,7 +506,7 @@ class TelegramNotifier:
         self.channel_id = channel_id
         self.signal_count = 0
 
-    def send_scalping_signal(self, signal_data, indicators, ai_prediction):
+    async def send_scalping_signal(self, signal_data, indicators, ai_prediction):
         """Send comprehensive scalping signal to Telegram"""
         try:
             self.signal_count += 1
@@ -536,14 +538,18 @@ class TelegramNotifier:
 
 ⏰ *Time: {datetime.now().strftime('%H:%M:%S')}*
             """.strip()
+            try:
+                 await self.bot.send_message(
+                        chat_id=self.channel_id,
+                        text=message,
+                        parse_mode='Markdown'
+                        )
+                 print (f"✅ Telegram signal #{self.signal_count} sent successfully.")
 
-            self.bot.send_message(
-                chat_id=self.channel_id,
-                text=message,
-                parse_mode='Markdown'
-            )
+            except Exception as e:
 
-            logging.info(f"✅ Telegram signal #{self.signal_count} sent")
+                print(f"✅ Telegram signal #{self.signal_count} started in background.")
+
 
         except TelegramError as e:
             logging.error(f"❌ Telegram error: {e}")
@@ -747,10 +753,7 @@ def _display_results(data, indicators, signal, ai_prediction, confidence):
 
 
 
-def main():
-    import os
-    import pandas as pd
-    import joblib
+async def main():
 
     load_dotenv("C:\\Users\\Deppa\\tradingSignals.env")
     telegram = TelegramNotifier(
@@ -842,15 +845,17 @@ def main():
                         print(f"ai_prediction: {ai_prediction}")
                         print(f"confidence: {confidence}")
                         print(f"model_details: {model_details}")
+                        print(df_final.tail(10))
                         current_price = df_final['close'].iloc[-1]
+                        print(f"current_price: {current_price}")
                         signal = _generate_signal(ai_prediction, confidence, current_price)
-                        if signal['signal'] != 'HOLD' and confidence > 0.7:
-                            self.telegram.send_scalping_signal(signal, indicators, {
+                        if signal['signal'] == 'HOLD' and confidence > 0.3:
+                            await telegram.send_scalping_signal(signal, TechnicalIndicatorsValue, {
                                 'confidence': confidence,
                                 'xgboost': model_details.get('xgboost', 0),
                                 'random_forest': model_details.get('random_forest', 0),
                                 'tslm': model_details.get('tslm', 0)
-                        })
+                            })
 
                         # 6. Display results
                     _display_results(df_final, TechnicalIndicatorsValue, signal, ai_prediction, confidence)
@@ -858,10 +863,7 @@ def main():
                     cycle_duration = time.time() - cycle_start
                     sleep_time = max(1, 60 - cycle_duration)
                     logger.logger.info(f"⏰ Cycle completed in {cycle_duration:.2f}s")
-                    time.sleep(sleep_time)
-                    if cycle_count == 3:
-
-                        sys.exit (0)
+                    await sleep(sleep_time)
         except Exception as e:
             logger.logger.error(f" signal generation error: {e}")
     except Exception as e:
@@ -869,4 +871,4 @@ def main():
         import traceback
 if __name__ == "__main__":
     print("Yahoo Finance RSI System")
-    main()
+    asyncio.run(main())

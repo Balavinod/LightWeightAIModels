@@ -9,103 +9,9 @@ import pprint
 from datetime import datetime
 import websockets
 import pandas as pd
+from schwab.client import base as schwab_base
 
-async def get_streamer_info(schwab_client):
-    """
-    Fetches user preferences including necessary streamer information
-    for the WebSocket connection.
-    """
-    try:
-        # Await the asynchronous function call
-        response = await schwab_client.get_user_preferences()
 
-        # Check the status of the aiohttp response object
-        if response.status == 200:
-            # Await the JSON conversion
-            user_prefs_json = await response.json()
-            logger.info("Successfully fetched streamer information.")
-            return user_prefs_json
-        else:
-            logger.error(f"Failed to get user preferences. Status code: {response.status}")
-            # You can also await and print the error message if needed:
-            # error_text = await response.text()
-            # logger.error(f"Error details: {error_text}")
-            return None
-    except Exception as e:
-        print(f"Error getting streamer info: {e}")
-        return None
-async def stream_futures_data(schwab_client):
-    user_prefs = await get_streamer_info(schwab_client)
-    if not user_prefs:
-        return
-
-    streamer_info = user_prefs.get('streamerInfo')
-    if not streamer_info:
-        logger.error("No streamer info found in user preferences.")
-        return
-
-    streamer_url = streamer_info['streamerSocketUrl']
-
-    # Construct the login message
-    login_request = {
-        "requests": [
-            {
-                "requestid": 0,
-                "service": "ADMIN",
-                "command": "LOGIN",
-                "parameters": {
-                    "token": streamer_info['token'],
-                    "company": streamer_info['company'],
-                    "segment": streamer_info['segment'],
-                    "cddomain": streamer_info['cddomain'],
-                    "usergroup": streamer_info['usergroup'],
-                    "accesslevel": streamer_info['accessLevel'],
-                    "acl": streamer_info['acl'],
-                    "appid": streamer_info['appId'],
-                    "surrogateIds": streamer_info['surrogateIds'],
-                    "schwabClientFunctionId": streamer_info['schwabClientFunctionId'],
-                    "virtual_account": user_prefs.get('accounts')[0].get('accountId')
-                }
-            }
-        ]
-    }
-
-    # Construct the futures subscription message
-    futures_subscription = {
-        "requests": [
-            {
-                "requestid": 1,
-                "service": "FUTURES_QUOTES",  # Service for futures quotes
-                "command": "SUBS",
-                "parameters": {
-                    "keys": ("/NQ"),
-                    "fields": "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22"  # Level 1 fields
-                }
-            }
-        ]
-    }
-
-    async with websockets.connect(streamer_url) as websocket:
-        logger.info("WebSocket connection established. Sending login request...")
-        await websocket.send(json.dumps(login_request))
-
-        # Wait for login confirmation
-        await websocket.recv()
-        logger.info("Login successful. Sending futures subscription request...")
-        await websocket.send(json.dumps(futures_subscription))
-
-        logger.info(f"Subscribed to {config.SYMBOL} futures quotes. Awaiting data...")
-
-        # Process incoming data
-        try:
-            while True:
-                message = await websocket.recv()
-                data = json.loads(message)
-                # Print and process the received futures data
-                pprint.pprint(data)
-                # Note: Streaming data is sent as deltas, so you need to merge them into your data structure
-        except websockets.exceptions.ConnectionClosed:
-            logger.warning("WebSocket connection closed.")
 def append_new_data_only(df_new_data, file_path, index_label='datetime'):
 
         # 1. Define the columns to check for duplicates (your unique index/timestamp)
@@ -150,7 +56,7 @@ def main():
     logger = logging.getLogger(__name__)
 
 # Load environment variables
-    load_dotenv("C:\\Users\\Administrator\\tradingSignals.env")
+    load_dotenv("C:\\Users\\Deppa\\tradingSignals.env")
 
 # Verify environment variables
     api_key = os.getenv('app_key')
@@ -185,6 +91,10 @@ def main():
     )
     data1 = resp1.json()
     #pprint.pprint(data1)
+    resp2 = c.get_quotes(symbols="/NQ") # futures trade almost 24h
+    data_quote = resp2.json()
+    df_quotes = pd.DataFrame.from_dict(data_quote, orient='index')
+    print(df_quotes.tail())
     data_points = []
 #print(hist_data)
     if 'candles' in data1:
@@ -200,9 +110,10 @@ def main():
 
 
     df_hist_data = pd.DataFrame(data_points)
+    print(df_hist_data.tail())
     df_hist_data['datetime'] = pd.to_datetime(df_hist_data['datetime'], unit='ms')
     df_hist_data.set_index('datetime', inplace=True)
-    backup_file_path ="C:\\Users\\Administrator\\PycharmProjects\\PythonProject\\backup\\schwab_candles_backup.csv"
+    backup_file_path ="C:\\Users\\Deppa\\PycharmProjects\\LightWeightAIModels\\backup\\schwab_candles_backup.csv"
     print(backup_file_path)
     try:
         append_new_data_only(
@@ -232,6 +143,7 @@ def main():
 
 
     pprint_first_n_lines(data1, num_lines=20)
+    pprint_first_n_lines(data_quote, num_lines=20)
 
 if __name__ == "__main__":
     main()
