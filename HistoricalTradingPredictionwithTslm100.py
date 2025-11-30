@@ -596,6 +596,15 @@ class TelegramNotifier:
         • BB Position: {indicators.get('bb_position', 0):.1%}
         • VWAP Dist: {indicators.get('vwap_distance', 0):.2f}%
         • Volume: {indicators.get('volume_ratio', 0):.1f}x
+        • MACD Histogram: {float(indicators.get('macd_histogram', 0) or 0):.3f}
+        • SMA 5: {float(indicators.get('sma_5', 0) or 0):.1f}
+        • SMA 20: {float(indicators.get('sma_20', 0) or 0):.1f}
+        • EMA 8: {float(indicators.get('ema_8', 0) or 0):.1f}
+        • EMA 21: {float(indicators.get('ema_21', 0) or 0):.1f}
+
+        
+
+        
 
         **🎯 TARGETS:**
         • Take Profit: ${signal_data.get('take_profit', 0):.2f}
@@ -618,9 +627,7 @@ class TelegramNotifier:
 
             except Exception as e:
 
-                print(f"✅ Telegram signal #{self.signal_count} started in background.")
-
-
+                print(f"✅ Telegram signal #{self.signal_count} started in background{e}.")
         except TelegramError as e:
             logging.error(f"❌ Telegram error: {e}")
 class SchwabDataFetcher:
@@ -696,6 +703,83 @@ class SchwabDataFetcher:
             )
             self.logger.log_performance("DATA_FETCH", fetch_duration, False)
             return None
+def compute_signal_scores(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Compute bullish and bearish scores based on technical indicators.
+    Returns the DataFrame with two new columns: bullish_score, bearish_score.
+    """
+
+    bullish_score = np.zeros(len(df))
+    bearish_score = np.zeros(len(df))
+
+    # RSI
+    bullish_score += (df['rsi_14'] > 50).astype(int)
+    bearish_score += (df['rsi_14'] < 50).astype(int)
+
+    # MACD
+    bullish_score += (df['macd'] > 0).astype(int)
+    bearish_score += (df['macd'] < 0).astype(int)
+
+    # MACD Histogram
+    bullish_score += (df['macd_histogram'] > 0).astype(int)
+    bearish_score += (df['macd_histogram'] < 0).astype(int)
+
+    # Bollinger Band Position
+    bullish_score += (df['bb_position'] > 0.5).astype(int)   # near upper band
+    bearish_score += (df['bb_position'] < -0.5).astype(int)  # near lower band
+
+    # VWAP Distance
+    bullish_score += (df['vwap_distance'] > 0).astype(int)
+    bearish_score += (df['vwap_distance'] < 0).astype(int)
+
+    # Stochastic K
+    bullish_score += (df['stoch_k'] > 20).astype(int)
+    bearish_score += (df['stoch_k'] < 80).astype(int)
+
+    # Williams %R
+    bullish_score += (df['williams_r'] > -50).astype(int)
+    bearish_score += (df['williams_r'] < -50).astype(int)
+
+    # ATR (volatility confirmation)
+    bullish_score += (df['atr'] > df['atr'].rolling(20).mean()).astype(int)
+    bearish_score += (df['atr'] < df['atr'].rolling(20).mean()).astype(int)
+
+    # Volume Ratios
+    bullish_score += (df['volume_ratio'] > 1).astype(int)
+    bearish_score += (df['volume_ratio'] < 1).astype(int)
+
+    bullish_score += (df['volume_ratio_current'] > 1).astype(int)
+    bearish_score += (df['volume_ratio_current'] < 1).astype(int)
+
+    # Chaikin Money Flow
+    bullish_score += (df['cmf'] > 0).astype(int)
+    bearish_score += (df['cmf'] < 0).astype(int)
+
+    # Money Flow Index
+    bullish_score += (df['mfi'] > 50).astype(int)
+    bearish_score += (df['mfi'] < 50).astype(int)
+
+    # Moving Averages
+    bullish_score += (df['sma_5'] > df['sma_20']).astype(int)
+    bearish_score += (df['sma_5'] < df['sma_20']).astype(int)
+
+    bullish_score += (df['ema_8'] > df['ema_21']).astype(int)
+    bearish_score += (df['ema_8'] < df['ema_21']).astype(int)
+
+    # Price Change
+    bullish_score += (df['price_change'] > 0).astype(int)
+    bearish_score += (df['price_change'] < 0).astype(int)
+
+    # Price Range (confirmation of conviction)
+    bullish_score += (df['price_range'] > df['price_range'].rolling(20).mean()).astype(int)
+    bearish_score += (df['price_range'] < df['price_range'].rolling(20).mean()).astype(int)
+
+    # Attach scores
+    df['bullish_score'] = bullish_score
+    df['bearish_score'] = bearish_score
+
+    return df
+
 def append_new_data_only(df_new_data, file_path, index_label='datetime'):
 
         # 1. Define the columns to check for duplicates (your unique index/timestamp)
@@ -933,8 +1017,13 @@ async def main():
                         print(f"current_price: {current_price}")
                         signal = _generate_signal(ai_prediction, confidence, current_price)
                         print("Generate signal is completed")
+                        bull_data = {}
+                        df_technical_signal = compute_signal_scores(TechnicalIndicatorsValue)
+                        latest_indicator = df_technical_signal.iloc[-1]
+                        for col_name in df_technical_signal.columns:
+                            bull_data[col_name] = latest_indicator[col_name]
                         if signal['signal'] == 'HOLD' and confidence < 0.7:
-                            await telegram.send_scalping_signal(signal, ti_data, {
+                            await telegram.send_scalping_signal(signal, ti_data,{
                                 'confidence': confidence,
                                 'xgboost': model_details.get('xgboost', 0),
                                 'random_forest': model_details.get('random_forest', 0),
