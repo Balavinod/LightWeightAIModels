@@ -928,12 +928,13 @@ async def main():
                         print(f"ai_prediction: {ai_prediction}")
                         print(f"confidence: {confidence}")
                         print(f"model_details: {model_details}")
-                        print(df_final.tail(10))
+                        #print(df_final.tail(10))
                         current_price = df_final['close'].iloc[-1]
                         print(f"current_price: {current_price}")
                         signal = _generate_signal(ai_prediction, confidence, current_price)
-                        if signal['signal'] != 'HOLD' and confidence > 0.7:
-                            await telegram.send_scalping_signal(signal, TechnicalIndicatorsValue, {
+                        print("Generate signal is completed")
+                        if signal['signal'] == 'HOLD' and confidence < 0.7:
+                            await telegram.send_scalping_signal(signal, ti_data, {
                                 'confidence': confidence,
                                 'xgboost': model_details.get('xgboost', 0),
                                 'random_forest': model_details.get('random_forest', 0),
