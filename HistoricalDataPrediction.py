@@ -848,6 +848,8 @@ async def main():
                             )
 
                     df_final = load_historical_data_from_csv(df_EmptyDataFrame, backup_file_path, index_label='datetime')
+                    #df_final = df_final_target.tail(1200)
+
                     logger.logger.info(f"current data set which is going for predictive analysis:{len(df_final)} and {cycle_count}")
                     logger.logger.info("final dataframe loaded from disk successfully")
                     TechnicalIndicatorsValue = TI.calculate_all_indicators(df_final)
